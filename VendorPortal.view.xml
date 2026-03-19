@@ -1,0 +1,898 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    controllerName="vendordashboard.controller.VendorPortal"
+    displayBlock="true"
+>
+    <SplitApp
+        id="SplitApp"
+        initialDetail="Profile"
+        initialMaster="master"
+    >
+        <detailPages>
+            <!-- ================= PROFILE ================= -->
+            <Page
+                id="Profile"
+                title="Profile"
+            >
+                <content>
+                    <!-- 🔷 GENERIC TILES -->
+                    <HBox
+                        justifyContent="SpaceAround"
+                        class="sapUiSmallMargin"
+                    >
+                        <GenericTile
+                            header="Profile"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/profileCount}"
+                                        icon="sap-icon://customer"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Profile"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Products"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/productsCount}"
+                                        icon="sap-icon://product"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Products"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Orders"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/ordersCount}"
+                                        icon="sap-icon://sales-order"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Orders"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Payments"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/paymentsCount}"
+                                        icon="sap-icon://payment-approval"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Payments"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Overview"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/overviewCount}"
+                                        icon="sap-icon://business-objects-experience"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="BusinessOverview"
+                                />
+                            </customData>
+                        </GenericTile>
+                    </HBox>
+
+                    <!-- CONTENT -->
+                    <VBox class="sapUiMediumMargin">
+                        <!-- 🔷 BASIC INFO CARD -->
+                        <VBox
+                            class="sapUiSmallMarginBottom sapUiContentPadding sapUiResponsiveMargin sapUiBoxShadow"
+                        >
+                            <Title
+                                text="Basic Information"
+                                level="H4"
+                            />
+
+                            <HBox justifyContent="SpaceBetween">
+                                <ObjectStatus
+                                    title="Vendor ID"
+                                    text="{oModel>/VendorID}"
+                                />
+                                <ObjectStatus
+                                    title="Name"
+                                    text="{oModel>/Name}"
+                                />
+                            </HBox>
+
+                            <HBox justifyContent="SpaceBetween">
+                                <ObjectStatus
+                                    title="Type"
+                                    text="{oModel>/VendorType}"
+                                />
+                                <ObjectStatus
+                                    title="Rating"
+                                    text="{oModel>/Rating}"
+                                />
+                            </HBox>
+                        </VBox>
+
+                        <!-- 🔷 CONTACT INFO CARD -->
+                        <VBox
+                            class="sapUiSmallMarginBottom sapUiContentPadding sapUiBoxShadow"
+                        >
+                            <Title
+                                text="Contact Details"
+                                level="H4"
+                            />
+
+                            <HBox justifyContent="SpaceBetween">
+                                <ObjectStatus
+                                    title="Email"
+                                    text="{oModel>/Email}"
+                                />
+                                <ObjectStatus
+                                    title="Phone"
+                                    text="{oModel>/Phone}"
+                                />
+                            </HBox>
+                        </VBox>
+
+                        <!-- 🔷 ADDRESS CARD -->
+                        <VBox class="sapUiContentPadding sapUiBoxShadow">
+                            <Title
+                                text="Address Information"
+                                level="H4"
+                            />
+
+                            <HBox justifyContent="SpaceBetween">
+                                <ObjectStatus
+                                    title="City"
+                                    text="{oModel>/City}"
+                                />
+                                <ObjectStatus
+                                    title="Country"
+                                    text="{oModel>/Country}"
+                                />
+                            </HBox>
+
+                            <ObjectStatus
+                                title="Address"
+                                text="{oModel>/Address}"
+                            />
+                            <ObjectStatus
+                                title="GSTIN"
+                                text="{oModel>/GSTIN}"
+                            />
+                        </VBox>
+                    </VBox>
+                </content>
+            </Page>
+
+            <!-- ================= PRODUCTS ================= -->
+            <Page
+                id="Products"
+                title="Products"
+            >
+                <content>
+                    <!-- 🔷 SAME TILES -->
+                    <HBox
+                        justifyContent="SpaceAround"
+                        class="sapUiSmallMargin"
+                    >
+                        <GenericTile
+                            header="Profile"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/profileCount}"
+                                        icon="sap-icon://customer"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Profile"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Products"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/productsCount}"
+                                        icon="sap-icon://product"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Products"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Orders"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/ordersCount}"
+                                        icon="sap-icon://sales-order"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Orders"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Payments"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/paymentsCount}"
+                                        icon="sap-icon://payment-approval"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Payments"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Overview"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/overviewCount}"
+                                        icon="sap-icon://business-objects-experience"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="BusinessOverview"
+                                />
+                            </customData>
+                        </GenericTile>
+                    </HBox>
+
+                    <Table items="{productsModel>/Products}" growing="true" growingScrollToLoad="true" class="sapUiMediumMarginTop">
+                        <columns>
+                            <Column>
+                                <Text text="Product ID" />
+                            </Column>
+                            <Column>
+                                <Text text="Name" />
+                            </Column>
+                            <Column>
+                                <Text text="Price" />
+                            </Column>
+                            <Column>
+                                <Text text="Stock" />
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{productsModel>ProductID}" />
+                                    <Text text="{productsModel>ProductName}" />
+                                    <Text text="{productsModel>UnitPrice}" />
+                                    <Text text="{productsModel>UnitsInStock}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </Page>
+
+            <!-- ================= ORDERS ================= -->
+            <Page
+                id="Orders"
+                title="Orders"
+            >
+                <content>
+                    <HBox
+                        justifyContent="SpaceAround"
+                        class="sapUiSmallMargin"
+                    >
+                        <GenericTile
+                            header="Profile"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/profileCount}"
+                                        icon="sap-icon://customer"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Profile"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Products"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/productsCount}"
+                                        icon="sap-icon://product"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Products"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Orders"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/ordersCount}"
+                                        icon="sap-icon://sales-order"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Orders"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Payments"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/paymentsCount}"
+                                        icon="sap-icon://payment-approval"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Payments"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Overview"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/overviewCount}"
+                                        icon="sap-icon://business-objects-experience"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="BusinessOverview"
+                                />
+                            </customData>
+                        </GenericTile>
+                    </HBox>
+
+                    <Table items="{ordersModel>/Orders}" growing="true" growingScrollToLoad="true" class="sapUiMediumMarginTop">
+                        <columns>
+                            <Column>
+                                <Text text="Order ID" />
+                            </Column>
+                            <Column>
+                                <Text text="Customer" />
+                            </Column>
+                            <Column>
+                                <Text text="Date" />
+                            </Column>
+                            <Column>
+                                <Text text="Status" />
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{ordersModel>OrderID}" />
+                                    <Text text="{ordersModel>CustomerID}" />
+                                    <Text text="{ordersModel>OrderDate}" />
+                                    <Text text="Delivered" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </Page>
+
+            <!-- ================= PAYMENTS ================= -->
+            <Page
+                id="Payments"
+                title="Payments"
+            >
+                <content>
+                    <HBox
+                        justifyContent="SpaceAround"
+                        class="sapUiSmallMargin"
+                    >
+                        <GenericTile
+                            header="Profile"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/profileCount}"
+                                        icon="sap-icon://customer"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Profile"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Products"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/productsCount}"
+                                        icon="sap-icon://product"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Products"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Orders"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/ordersCount}"
+                                        icon="sap-icon://sales-order"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Orders"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Payments"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/paymentsCount}"
+                                        icon="sap-icon://payment-approval"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Payments"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Overview"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/overviewCount}"
+                                        icon="sap-icon://business-objects-experience"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="BusinessOverview"
+                                />
+                            </customData>
+                        </GenericTile>
+                    </HBox>
+
+                    <Table items="{paymentsModel>/Payments}" growing="true" growingScrollToLoad="true" class="sapUiMediumMarginTop">
+                        <columns>
+                            <Column>
+                                <Text text="Invoice No" />
+                            </Column>
+                            <Column>
+                                <Text text="Date" />
+                            </Column>
+                            <Column>
+                                <Text text="Amount" />
+                            </Column>
+                            <Column>
+                                <Text text="Status" />
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{paymentsModel>InvoiceNo}" />
+                                    <Text text="{paymentsModel>Date}" />
+                                    <Text text="{paymentsModel>Amount}" />
+                                    <Text text="{paymentsModel>Status}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </Page>
+
+            <!-- ================= OVERVIEW ================= -->
+            <Page
+                id="BusinessOverview"
+                title="Business Overview"
+            >
+                <content>
+                    <HBox
+                        justifyContent="SpaceAround"
+                        class="sapUiSmallMargin"
+                    >
+                        <GenericTile
+                            header="Profile"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/profileCount}"
+                                        icon="sap-icon://customer"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Profile"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Products"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/productsCount}"
+                                        icon="sap-icon://product"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Products"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Orders"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/ordersCount}"
+                                        icon="sap-icon://sales-order"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Orders"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Payments"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/paymentsCount}"
+                                        icon="sap-icon://payment-approval"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Payments"
+                                />
+                            </customData>
+                        </GenericTile>
+
+                        <GenericTile
+                            header="Overview"
+                            press="onTilePress"
+                        >
+                            <tileContent>
+                                <TileContent>
+                                    <NumericContent
+                                        value="{tileModel>/overviewCount}"
+                                        icon="sap-icon://business-objects-experience"
+                                    />
+                                </TileContent>
+                            </tileContent>
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="BusinessOverview"
+                                />
+                            </customData>
+                        </GenericTile>
+                    </HBox>
+
+                    <VBox class="sapUiMediumMargin">
+                        <!-- 🔷 KPI CARDS -->
+                        <HBox
+                            justifyContent="SpaceAround"
+                            class="sapUiSmallMarginBottom"
+                        >
+                            <VBox
+                                class="sapUiContentPadding sapUiBoxShadow"
+                                width="20%"
+                            >
+                                <Title
+                                    text="Total Orders"
+                                    level="H5"
+                                />
+                                <ObjectNumber
+                                    number="{overviewModel>/TotalOrders}"
+                                />
+                            </VBox>
+
+                            <VBox
+                                class="sapUiContentPadding sapUiBoxShadow"
+                                width="20%"
+                            >
+                                <Title
+                                    text="Revenue"
+                                    level="H5"
+                                />
+                                <ObjectNumber
+                                    number="{overviewModel>/TotalRevenue}"
+                                    unit="USD"
+                                />
+                            </VBox>
+
+                            <VBox
+                                class="sapUiContentPadding sapUiBoxShadow"
+                                width="20%"
+                            >
+                                <Title
+                                    text="Pending Payments"
+                                    level="H5"
+                                />
+                                <ObjectNumber
+                                    number="{overviewModel>/PendingPayments}"
+                                />
+                            </VBox>
+
+                            <VBox
+                                class="sapUiContentPadding sapUiBoxShadow"
+                                width="20%"
+                            >
+                                <Title
+                                    text="Top Product"
+                                    level="H5"
+                                />
+                                <Text text="{overviewModel>/TopProduct}" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- 🔷 RATING TREND -->
+                        <VBox class="sapUiContentPadding sapUiBoxShadow">
+                            <Title
+                                text="Vendor Rating Trend"
+                                level="H4"
+                            />
+
+                            <List items="{overviewModel>/Ratings}">
+                                <items>
+                                    <StandardListItem
+                                        title="{overviewModel>Month}"
+                                        description="Monthly Rating"
+                                        info="{overviewModel>Rating}"
+                                        infoState="Success"
+                                    />
+                                </items>
+                            </List>
+                        </VBox>
+                    </VBox>
+
+                </content>
+            </Page>
+        </detailPages>
+
+        <!-- ================= MASTER ================= -->
+        <masterPages>
+            <Page
+                id="master"
+                title="Menu"
+            >
+                <List itemPress="onListItemPress">
+                    <items>
+                        <StandardListItem
+                            title="Profile"
+                            type="Active"
+                        >
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Profile"
+                                />
+                            </customData>
+                        </StandardListItem>
+                        <StandardListItem
+                            title="Products"
+                            type="Active"
+                        >
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Products"
+                                />
+                            </customData>
+                        </StandardListItem>
+                        <StandardListItem
+                            title="Orders"
+                            type="Active"
+                        >
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Orders"
+                                />
+                            </customData>
+                        </StandardListItem>
+                        <StandardListItem
+                            title="Payments"
+                            type="Active"
+                        >
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="Payments"
+                                />
+                            </customData>
+                        </StandardListItem>
+                        <StandardListItem
+                            title="Business Overview"
+                            type="Active"
+                        >
+                            <customData>
+                                <core:CustomData
+                                    key="nav"
+                                    value="BusinessOverview"
+                                />
+                            </customData>
+                        </StandardListItem>
+                    </items>
+                </List>
+            </Page>
+        </masterPages>
+    </SplitApp>
+</mvc:View>

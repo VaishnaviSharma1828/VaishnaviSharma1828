@@ -1,0 +1,191 @@
+/* ================= GLOBAL BACKGROUND ================= */
+.sapMPage {
+    background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+}
+
+/* ================= GENERIC TILES ================= */
+.sapMGT {
+    border-radius: 16px !important;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white !important;
+}
+
+.sapMGT:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+}
+
+/* Tile text */
+.sapMGT .sapMText,
+.sapMGT .sapMGTSubHdrTxt {
+    color: white !important;
+    font-weight: bold;
+}
+
+/* Tile numbers */
+.sapMNCValue {
+    color: #ffffff !important;
+    font-size: 2rem !important;
+}
+
+/* ================= KPI CARDS (VBox) ================= */
+.sapUiBoxShadow {
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ffffff, #f0f4ff);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.sapUiBoxShadow:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Titles */
+.sapMTitle {
+    color: #333;
+    font-weight: 600;
+}
+
+/* ================= OBJECT STATUS ================= */
+.sapMObjStatus {
+    background: #eef3ff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+/* ================= TABLE ================= */
+.sapMTable {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    background: white;
+}
+
+/* Table Header */
+.sapMTableTH {
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+    color: white !important;
+    font-weight: bold;
+}
+
+/* Table Rows */
+.sapMTableRow {
+    transition: all 0.2s ease;
+}
+
+.sapMTableRow:hover {
+    background: #f4f8ff !important;
+    transform: scale(1.01);
+}
+
+/* ================= LIST ================= */
+.sapMList {
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.sapMLIB {
+    transition: all 0.2s ease;
+}
+
+.sapMLIB:hover {
+    background: #eef4ff !important;
+    transform: translateX(4px);
+}
+
+/* ================= RATING / STATUS COLORS ================= */
+.sapMObjStatusSuccess {
+    background-color: #d4f8e8 !important;
+    color: #1b7f5c !important;
+}
+
+.sapMObjStatusError {
+    background-color: #ffe3e3 !important;
+    color: #d63031 !important;
+}
+
+/* ================= BUTTONS ================= */
+.sapMBtn {
+    border-radius: 10px !important;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: white !important;
+    border: none !important;
+}
+
+.sapMBtn:hover {
+    background: linear-gradient(135deg, #ff6a4a, #fda763);
+}
+
+/* ================= SCROLL / SPACING ================= */
+.sapUiContentPadding {
+    padding: 16px !important;
+}
+
+.sapUiMediumMarginTop {
+    margin-top: 20px !important;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sapMPage {
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+/* ================= MASTER PAGE ================= */
+#master {
+    background: linear-gradient(180deg, #1f2a44, #2b3a67);
+}
+
+/* Title inside master */
+#master .sapMTitle {
+    color: #ffffff !important;
+}
+
+/* ================= MASTER LIST ================= */
+#master .sapMList {
+    background: transparent !important;
+}
+
+/* List Items */
+#master .sapMLIB {
+    background: transparent !important;
+    color: #ffffff !important;
+    border-radius: 10px;
+    margin: 6px 10px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+#master .sapMLIB:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: translateX(6px);
+}
+
+/* Active/Selected Item */
+#master .sapMLIBSelected {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+#master .sapMSLITitle {
+    color: #ffffff !important;
+    font-weight: 500;
+}
